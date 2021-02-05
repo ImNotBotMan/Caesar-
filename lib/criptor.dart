@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'dart:math';
 
 const List<String> ALPHABET = [
   "a",
@@ -28,29 +28,47 @@ const List<String> ALPHABET = [
   "y",
   "z"
 ];
-int encryptStep;
-bool isCrtptor = true;
-criptor(String inputText, String inputkey) {
-  var key = int.parse(inputkey);
-  List word = inputText.toString().toLowerCase().split("");
-  List<String> outputWord = [];
-  switch (isCrtptor) {
-    case true:
-      {
-        for (var i = 0; i < word.length; i++) {
-          if (word[i] == " ") {
-            outputWord.add(" ");
-          }
-          encryptStep = ALPHABET.indexOf(word[i]) + key;
-          if (encryptStep > 25) {
-            outputWord.add(ALPHABET[key]);
-          } else
-            outputWord.add(ALPHABET[encryptStep]);
-        }
-        print(outputWord.join());
-        return outputWord;
-      }
 
-    case false:
+List encryptWord = [];
+List decryptWord = [];
+
+// int lData;
+
+criptor<String>(
+  String string,
+  int key,
+  bool isCriptor,
+) {
+  int encryptStep;
+  int decryptStep;
+
+  print("ИСХОДНАЯ СТРОКА $string");
+
+  List word = string.toString().toLowerCase().split("");
+
+  for (var i = 0; i < word.length; i++) {
+    switch (isCriptor) {
+      case true:
+        {
+          encryptStep = ALPHABET.indexOf(word[i]) + key;
+          if (encryptStep >= 26) {
+            encryptWord
+                .add(ALPHABET[key - 1 - (25 - ALPHABET.indexOf(word[i]))]);
+          } else
+            encryptWord.add(ALPHABET[encryptStep]);
+        }
+        break;
+      case false:
+        {
+          decryptStep = ALPHABET.indexOf(word[i]) - key;
+          if (decryptStep < 0) {
+            decryptWord.add(ALPHABET[26 + decryptStep]);
+          } else {
+            decryptWord.add(ALPHABET[decryptStep]);
+          }
+        }
+        break;
+    }
+    print("КОНЕЧНАЯ СТРОКА ${encryptWord.join()}");
   }
 }

@@ -1,8 +1,12 @@
 part of 'main_bloc.dart';
 
 @immutable
-abstract class MainState {}
+abstract class CriptorState {}
 
-class MainInitial extends MainState {}
+class CriptorMainState extends CriptorState {}
 
-class CrtiptState extends MainState {}
+class LoadingState extends CriptorState {}
+
+class CloseLoadingState extends CriptorState {}
+
+class PopUpState extends CriptorState {}

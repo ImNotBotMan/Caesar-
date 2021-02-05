@@ -1,10 +1,20 @@
 part of 'main_bloc.dart';
 
 @immutable
-abstract class MainEvent {}
+abstract class CriptorEvent {}
 
-class CriptEvent extends MainEvent {
-  final String inputText;
-  final String inputKey;
-  CriptEvent(this.inputText, this.inputKey);
+class CriptIt extends CriptorEvent {
+  final String string;
+  final int key;
+
+  CriptIt(this.string, this.key);
+}
+
+class DecriptIT extends CriptorEvent {
+  final String string;
+  final int key;
+  DecriptIT(
+    this.string,
+    this.key,
+  );
 }
